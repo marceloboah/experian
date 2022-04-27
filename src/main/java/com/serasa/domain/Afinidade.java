@@ -1,12 +1,18 @@
 package com.serasa.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,14 +26,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Afinidade {
 	
+
 	@Id
-	@GeneratedValue
-	private long id;
+	@Column(name = "REGIAO")
+	private String regiao;
 	
-	@Column(name = "TEXTO")
-	private String texto;
 	
-	@Column(name = "LISTA")
-	private String estados;
+	@Column(name = "ESTADOS")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Estados> estados = new ArrayList<Estados>();
+	
 
 }

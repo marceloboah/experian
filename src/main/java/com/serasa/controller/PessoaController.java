@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.serasa.business.PessoaBusinessObject;
 import com.serasa.domain.Pessoa;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("api")
 @CrossOrigin({"*"})
+@Log4j2
 public class PessoaController {
 
 	@Autowired

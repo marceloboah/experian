@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,17 +23,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Score {
 	
-	@Id
-	@GeneratedValue
-	private long id;
+	/*@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) 
+	private long id;*/
 		
-	@Column(name = "DESCRICAO")
-	private String descricao;
+	@Id
+	@Column(name = "SCORE_DESCRICAO")
+	private String scoreDescricao;
 	
 	@Column(name = "INICIAL")
 	private Integer inicial;
 	
 	@Column(name = "FINAL")
+	@JsonProperty("final")
 	private Integer finnal;
 
 }

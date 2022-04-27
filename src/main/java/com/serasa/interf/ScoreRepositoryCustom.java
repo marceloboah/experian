@@ -1,5 +1,9 @@
 package com.serasa.interf;
 
-public interface ScoreRepositoryCustom {
+import com.serasa.domain.Score;
 
+public interface ScoreRepositoryCustom {
+	
+	Score findProductByParam(String scoreDescricao);
+	
 }
