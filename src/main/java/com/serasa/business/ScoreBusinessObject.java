@@ -15,7 +15,7 @@ public class ScoreBusinessObject {
 	public Score addScore(Score score) {
 		Score scoreVerify = new Score();
 		scoreVerify = scoreRepository.findProductByParam(score.getScoreDescricao());
-    	if (scoreVerify != null/* && scoreVerify.getId()>0*/) {
+    	if (scoreVerify != null) {
     		Score scoreAtualizado = this.populateScoreDTO(scoreVerify,score);
     		return scoreRepository.save(scoreAtualizado);
     	}

@@ -5,7 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +22,7 @@ import lombok.Setter;
 public class Pessoa {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 		
 	@Column(name = "DATA_INCLUSAO")
@@ -42,5 +45,8 @@ public class Pessoa {
 	
 	@Column(name = "REGIAO")
 	private String regiao;
+	
+	@Transient
+	private int score;
 
 }

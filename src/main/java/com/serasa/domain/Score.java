@@ -1,12 +1,8 @@
 package com.serasa.domain;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,10 +18,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Score {
-	
-	/*@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) 
-	private long id;*/
 		
 	@Id
 	@Column(name = "SCORE_DESCRICAO")
