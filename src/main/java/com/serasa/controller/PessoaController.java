@@ -1,7 +1,6 @@
 package com.serasa.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.serasa.business.PessoaBusinessObject;
-import com.serasa.domain.Pessoa;
 import com.serasa.dto.PessoaDTOEntrada;
+import com.serasa.dto.PessoaDTOSaida;
+import com.serasa.dto.PessoasDTOSaida;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -42,37 +42,37 @@ public class PessoaController {
     }
 	
 	@GetMapping("pessoa/{id}")
-    public ResponseEntity<Object> getProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<PessoaDTOSaida> getProductById(@PathVariable("id") Long id) {
 		try {
-			Optional<Pessoa> pessoa = pessoaBusinessObject.getPessoaById(id);
+			PessoaDTOSaida pessoa = pessoaBusinessObject.getPessoaById(id);
 			if(pessoa != null) {
-				return new ResponseEntity<Object>(pessoa,HttpStatus.CREATED);
+				return new ResponseEntity<PessoaDTOSaida>(pessoa,HttpStatus.OK);
 			}else {
-				return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<PessoaDTOSaida>(HttpStatus.NO_CONTENT);
 			}
 			
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<PessoaDTOSaida>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
         
     }
 	
 
 	@GetMapping("pessoa")
-    public ResponseEntity<Object> getPessoas() {
+    public ResponseEntity<List<PessoasDTOSaida>> getPessoas() {
         
         try {
-			List<Pessoa> pessoa = pessoaBusinessObject.getPessoas();
-			if(!pessoa.isEmpty() && pessoa.get(0) != null && pessoa.get(0).getId() >0) {
-				return new ResponseEntity<Object>(pessoa,HttpStatus.OK);
+        	List<PessoasDTOSaida> pessoa = pessoaBusinessObject.getPessoas();
+			if(!pessoa.isEmpty() && pessoa.get(0) != null) {
+				return new ResponseEntity<List<PessoasDTOSaida>>(pessoa,HttpStatus.OK);
 			}else {
-				return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<List<PessoasDTOSaida>>(HttpStatus.NO_CONTENT);
 			}
 			
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<PessoasDTOSaida>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
 	

@@ -36,5 +36,10 @@ public class AfinidadeBusinessObject {
 		afinidade.setRegiao(afinidadeDTO.getRegiao());
 		return afinidade;
 	}
+	
+	public Afinidade getAfinidadeByRegiao(String regiao) {
+		Afinidade afinidade = afinidadeRepository.getAfinidadeByRegiao(regiao);
+		return afinidade;
+	}
 
 }

@@ -1,18 +1,14 @@
 package com.serasa.domain;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import lombok.Getter;
@@ -21,7 +17,7 @@ import lombok.Setter;
 
 
 @Entity
-@DiscriminatorValue(value = "PESSOA")
+@Table(name="PESSOA")
 @Getter 
 @Setter
 @NoArgsConstructor
@@ -49,13 +45,16 @@ public class Pessoa {
 	@Column(name = "ESTADO")
 	private String estado;
 	
-	/*@Column(name = "REGIAO")
-	private String regiao;*/
+	@Column(name = "REGIAO")
+	private String regiao;
 	
 	@Column(name = "SCORE")
 	private String score;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "REGIAO")
-	private Afinidade afinidade;
+	@Transient
+	private List<Estados> estados;
+	
+	@Transient
+	private List<String> estadosString;
+	
 }

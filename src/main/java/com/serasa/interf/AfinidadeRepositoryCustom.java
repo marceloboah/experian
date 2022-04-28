@@ -1,14 +1,13 @@
 package com.serasa.interf;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.data.repository.query.Param;
 
-import com.serasa.domain.Pessoa;
+import com.serasa.domain.Afinidade;
 
 public interface AfinidadeRepositoryCustom {
 	
 	
 	
-	
+	Afinidade getAfinidadeByRegiao(@Param("regiao") String regiao);
 
 }
