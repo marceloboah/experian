@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.serasa.domain.Pessoa;
+import com.serasa.dto.PessoaDTOEntrada;
 import com.serasa.repository.PessoaRepository;
 
 @Service
@@ -26,17 +27,14 @@ public class PessoaBusinessObject {
         return (List<Pessoa>) pessoaRepository.findAll();
     }
 
-	public void deletePessoa(Long id) {
-		pessoaRepository.deleteById(id);		
-	}
-
 	public String getTeste() {
 		return "Teste";
 	}
 
-	public void addPessoa(Pessoa pessoa) {
-		pessoa = setDate(pessoa);
-		pessoaRepository.save(pessoa);	
+	public void addPessoa(PessoaDTOEntrada pessoa) {
+		
+		
+		pessoaRepository.save(populatePessoaEntrada(pessoa));	
 	}
     
 	public Pessoa setDate(Pessoa pessoa) {
@@ -44,6 +42,19 @@ public class PessoaBusinessObject {
 		formatter.format(date);
 		pessoa.setDataInclusao(date);
 		return pessoa;
+	}
+	
+	public Pessoa populatePessoaEntrada(PessoaDTOEntrada pessoaDTO) {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setCidade(pessoaDTO.getCidade());
+		pessoa.setEstado(pessoaDTO.getEstado());
+		pessoa.setIdade(pessoaDTO.getIdade());
+		pessoa.setNome(pessoaDTO.getNome());
+		pessoa.setRegiao(pessoaDTO.getRegiao());
+		pessoa.setScore(pessoaDTO.getScore());
+		pessoa.setTelefone(pessoaDTO.getTelefone());
+		pessoa = setDate(pessoa);
+		return pessoa;	
 	}
 
     

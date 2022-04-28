@@ -18,7 +18,6 @@ import lombok.extern.log4j.Log4j2;
 
 
 @RestController
-@RequestMapping("api")
 @CrossOrigin({"*"})
 @Log4j2
 public class AfinidadeController {
