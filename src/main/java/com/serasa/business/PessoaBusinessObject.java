@@ -7,7 +7,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.serasa.domain.Afinidade;
 import com.serasa.domain.Pessoa;
+import com.serasa.domain.Score;
 import com.serasa.dto.PessoaDTOEntrada;
 import com.serasa.repository.PessoaRepository;
 
@@ -16,6 +19,9 @@ public class PessoaBusinessObject {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private ScoreBusinessObject scoreBusinessObject;
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -31,9 +37,7 @@ public class PessoaBusinessObject {
 		return "Teste";
 	}
 
-	public void addPessoa(PessoaDTOEntrada pessoa) {
-		
-		
+	public void addPessoa(PessoaDTOEntrada pessoa) {		
 		pessoaRepository.save(populatePessoaEntrada(pessoa));	
 	}
     
@@ -50,10 +54,14 @@ public class PessoaBusinessObject {
 		pessoa.setEstado(pessoaDTO.getEstado());
 		pessoa.setIdade(pessoaDTO.getIdade());
 		pessoa.setNome(pessoaDTO.getNome());
-		pessoa.setRegiao(pessoaDTO.getRegiao());
-		pessoa.setScore(pessoaDTO.getScore());
+		//pessoa.setRegiao(pessoaDTO.getRegiao());
+		Score score = scoreBusinessObject.getScoreByScore(pessoaDTO.getScore());
+		pessoa.setScore(score.getScoreDescricao());
 		pessoa.setTelefone(pessoaDTO.getTelefone());
 		pessoa = setDate(pessoa);
+		Afinidade afinidade = new Afinidade();
+		afinidade.setRegiao(pessoaDTO.getRegiao());
+		pessoa.setAfinidade(afinidade);
 		return pessoa;	
 	}
 

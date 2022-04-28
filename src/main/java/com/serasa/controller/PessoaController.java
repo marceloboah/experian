@@ -28,8 +28,10 @@ public class PessoaController {
 	private PessoaBusinessObject pessoaBusinessObject;
 	
 	@PostMapping("pessoa")
-    public ResponseEntity<Object> addPessoa(@RequestBody PessoaDTOEntrada pessoa) {
-		
+    public ResponseEntity<Object> addPessoa(@RequestBody PessoaDTOEntrada pessoa) throws Exception {
+		if(pessoa != null && pessoa.getScore() > 1000 || pessoa.getScore() < 0) {
+			throw new Exception("Score Inválido! Score precisa estar entre 0 e 1000!");
+		}
 		try {
 			pessoaBusinessObject.addPessoa(pessoa);
 			return new ResponseEntity<Object>(HttpStatus.CREATED);

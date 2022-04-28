@@ -14,7 +14,7 @@ public class ScoreBusinessObject {
 	
 	public Score addScore(Score score) {
 		Score scoreVerify = new Score();
-		scoreVerify = scoreRepository.findProductByParam(score.getScoreDescricao());
+		scoreVerify = scoreRepository.findScoreByParam(score.getScoreDescricao());
     	if (scoreVerify != null) {
     		Score scoreAtualizado = this.populateScoreDTO(scoreVerify,score);
     		return scoreRepository.save(scoreAtualizado);
@@ -44,5 +44,8 @@ public class ScoreBusinessObject {
 		return scoreVerify;
 	}
 
+	public Score getScoreByScore(int score) {		
+    	return scoreRepository.findScoreBetweenParam(score);
+    }
 
 }

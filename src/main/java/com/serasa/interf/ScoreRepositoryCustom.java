@@ -4,6 +4,7 @@ import com.serasa.domain.Score;
 
 public interface ScoreRepositoryCustom {
 	
-	Score findProductByParam(String scoreDescricao);
+	Score findScoreByParam(String scoreDescricao);
+	Score findScoreBetweenParam(int score);
 	
 }

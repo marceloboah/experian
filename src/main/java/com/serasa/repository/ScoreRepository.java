@@ -13,10 +13,10 @@ import com.serasa.interf.ScoreRepositoryCustom;
 public interface ScoreRepository  extends CrudRepository<Score, Long> , ScoreRepositoryCustom {
 	
 	@Query("SELECT s FROM Score s WHERE s.scoreDescricao LIKE :scoreDescricao ")
-	Score findProductByParam(@Param("scoreDescricao") String scoreDescricao);
+	Score findScoreByParam(@Param("scoreDescricao") String scoreDescricao);
 	
 	
-	
-	
+	@Query("SELECT s FROM Score s WHERE s.inicial <=  :score AND s.finnal >= :score ")
+	Score findScoreBetweenParam(@Param("score") int score);
 	
 }
