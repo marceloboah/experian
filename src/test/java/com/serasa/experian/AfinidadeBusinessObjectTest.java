@@ -5,12 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 import com.serasa.business.AfinidadeBusinessObject;
 import com.serasa.domain.Afinidade;
@@ -24,9 +25,12 @@ public class AfinidadeBusinessObjectTest {
 	  @Autowired
 	  private AfinidadeBusinessObject afinidadeBusinessObject;
 	  
-
+	  @SuppressWarnings("unused")
+	  @Autowired
+	  private MockMvc mockMvc;
+	  
 	  @Test
-	  void addAfinidadeTest(){
+	  public void addAfinidadeTest(){
 		  AfinidadeDTO afinidadeDTO = new AfinidadeDTO();
 		  List<String> list = new ArrayList<String>();
 		  list.add("SP");
@@ -42,7 +46,7 @@ public class AfinidadeBusinessObjectTest {
 
 	  
 	  @Test
-	  void addAfinidadeObjTest(){
+	  public void addAfinidadeObjTest(){
 		  AfinidadeDTO afinidadeDTO = new AfinidadeDTO();
 		  List<String> list = new ArrayList<String>();
 		  list.add("SP");
@@ -57,7 +61,7 @@ public class AfinidadeBusinessObjectTest {
 	  }
 
 	  @Test
-	  void getPessoaByIdTest(){
+	  public void getPessoaByIdTest(){
 		  Afinidade afinidade = afinidadeBusinessObject.getAfinidadeByRegiao("sudeste");
 		  assertEquals(afinidade, afinidade);
 	  }

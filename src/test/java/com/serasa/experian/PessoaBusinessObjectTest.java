@@ -2,22 +2,30 @@ package com.serasa.experian;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.serasa.business.PessoaBusinessObject;
 import com.serasa.domain.Pessoa;
 import com.serasa.dto.PessoaDTOEntrada;
 import com.serasa.dto.PessoaDTOSaida;
 import com.serasa.dto.PessoasDTOSaida;
+import com.serasa.dto.AfinidadeDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest 
@@ -26,37 +34,112 @@ public class PessoaBusinessObjectTest {
 	
 	  @Autowired
 	  private PessoaBusinessObject pessoaBusinessObject;
-
-	  /*@Test
-	  void getPessoaByIdTest(){
-		  PessoaDTOSaida pessoa = pessoaBusinessObject.getPessoaById(1L);
-		  if(pessoa != null) {
-			  assertNotNull(pessoa);
-		  }else {
-			  assertNull(pessoa);
-		  }
-		  //assertEquals(pessoa, pessoa);
-	  }
+	  
+	  @Autowired
+	  private MockMvc mockMvc;
 	  
 	  @Test
-	  void getPessoasTest(){
-		  List<PessoasDTOSaida> listPessoas = pessoaBusinessObject.getPessoas();
-		  if(listPessoas != null) {
-			  assertNotNull(listPessoas);
-		  }else {
-			  assertNull(listPessoas);
-		  }
-		  //assertEquals(listPessoas, listPessoas);
-	  }*/
+	  public void getPessoaByIdTest() throws Exception{
+		  AfinidadeDTO afinidadeDTO = new AfinidadeDTO();
+		  List<String> list = new ArrayList<String>();
+		  list.add("PR");
+		  list.add("SC");
+		  list.add("RS");
+		  afinidadeDTO.setRegiao("sul");
+		  afinidadeDTO.setEstados(list);		  
+		 
+		  
+		  ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		  String json = ow.writeValueAsString(afinidadeDTO);
+		  
+		  this.mockMvc.perform(MockMvcRequestBuilders
+			      .post("/afinidade")
+			      .content(json)
+			      .contentType(MediaType.APPLICATION_JSON)
+			      .accept(MediaType.APPLICATION_JSON))
+			      .andExpect(MockMvcResultMatchers.status().isCreated());
+		  
+		  
+			
+			 PessoaDTOEntrada pessoaDTOEntrada = new PessoaDTOEntrada();
+			 pessoaDTOEntrada.setNome("Marcelo");
+			 pessoaDTOEntrada.setTelefone("41 999999999");
+			 pessoaDTOEntrada.setIdade(45);
+			 pessoaDTOEntrada.setCidade("Curitiba"); 
+			 pessoaDTOEntrada.setEstado("PR");
+			 pessoaDTOEntrada.setRegiao("sul"); 
+			 pessoaDTOEntrada.setScore(1000);
+			 
+			 json = ow.writeValueAsString(pessoaDTOEntrada);
+			 
+			 this.mockMvc.perform(MockMvcRequestBuilders
+				      .post("/pessoa")
+				      .content(json)
+				      .contentType(MediaType.APPLICATION_JSON)
+				      .accept(MediaType.APPLICATION_JSON))
+				      .andExpect(MockMvcResultMatchers.status().isCreated());
+			 
+			 this.mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/1"))
+	          .andExpect(MockMvcResultMatchers.status().isOk())
+	          .andDo(MockMvcResultHandlers.print());
+          
+	  }
+	  
+		
+	 @Test 
+	 public void getPessoasTest() throws Exception{ 
+		 AfinidadeDTO afinidadeDTO = new AfinidadeDTO();
+		  List<String> list = new ArrayList<String>();
+		  list.add("PR");
+		  list.add("SC");
+		  list.add("RS");
+		  afinidadeDTO.setRegiao("sul");
+		  afinidadeDTO.setEstados(list);		  
+		 
+		  
+		  ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		  String json = ow.writeValueAsString(afinidadeDTO);
+		  
+		  this.mockMvc.perform(MockMvcRequestBuilders
+			      .post("/afinidade")
+			      .content(json)
+			      .contentType(MediaType.APPLICATION_JSON)
+			      .accept(MediaType.APPLICATION_JSON))
+			      .andExpect(MockMvcResultMatchers.status().isCreated());
+		  
+		  
+			
+			 PessoaDTOEntrada pessoaDTOEntrada = new PessoaDTOEntrada();
+			 pessoaDTOEntrada.setNome("Marcelo");
+			 pessoaDTOEntrada.setTelefone("41 999999999");
+			 pessoaDTOEntrada.setIdade(45);
+			 pessoaDTOEntrada.setCidade("Curitiba"); 
+			 pessoaDTOEntrada.setEstado("PR");
+			 pessoaDTOEntrada.setRegiao("sul"); 
+			 pessoaDTOEntrada.setScore(1000);
+			 
+			 json = ow.writeValueAsString(pessoaDTOEntrada);
+			 
+			 this.mockMvc.perform(MockMvcRequestBuilders
+				      .post("/pessoa")
+				      .content(json)
+				      .contentType(MediaType.APPLICATION_JSON)
+				      .accept(MediaType.APPLICATION_JSON))
+				      .andExpect(MockMvcResultMatchers.status().isCreated());
+			 
+			 this.mockMvc.perform(MockMvcRequestBuilders.get("/pessoa"))
+	          .andExpect(MockMvcResultMatchers.status().isOk())
+	          .andDo(MockMvcResultHandlers.print());
+	 }
 
 	  @Test
-	  void getTesteTest(){
+	  public void getTesteTest(){
 		  String teste = pessoaBusinessObject.getTeste();
 		  assertEquals("Teste", teste);
 	  }
 	  
 	  @Test
-	  void addPessoaTest(){
+	  public void addPessoaTest(){
 		  PessoaDTOEntrada pessoaDTOEntrada = new PessoaDTOEntrada();
 		  pessoaDTOEntrada.setCidade("Belo Horizonte");
 		  pessoaDTOEntrada.setEstado("MG");
@@ -69,7 +152,7 @@ public class PessoaBusinessObjectTest {
 	  }
 	  
 	  @Test
-	  void setDateTest(){
+	  public void setDateTest(){
 		  Pessoa pessoa = new Pessoa();
 		  pessoa.setCidade("Belo Horizonte");
 		  pessoa.setEstado("MG");
@@ -81,7 +164,7 @@ public class PessoaBusinessObjectTest {
 	  }
 	
 	  @Test
-	  void populatePessoaEntradaTest(){
+	  public void populatePessoaEntradaTest(){
 		  PessoaDTOEntrada pessoaDTOEntrada = new PessoaDTOEntrada();
 		  pessoaDTOEntrada.setCidade("Belo Horizonte");
 		  pessoaDTOEntrada.setEstado("MG");
@@ -94,7 +177,7 @@ public class PessoaBusinessObjectTest {
 	  }
 	  
 	  @Test
-	  void populatePessoaSaidaTest(){
+	  public void populatePessoaSaidaTest(){
 		  Pessoa pessoa = new Pessoa();
 		  pessoa.setCidade("Belo Horizonte");
 		  pessoa.setEstado("MG");
@@ -108,7 +191,7 @@ public class PessoaBusinessObjectTest {
 	  
 	  
 	  @Test
-	  void populateAllPessoasSaidaTest(){
+	  public void populateAllPessoasSaidaTest(){
 		  Pessoa pessoa = new Pessoa();
 		  pessoa.setCidade("Belo Horizonte");
 		  pessoa.setEstado("MG");
@@ -118,5 +201,19 @@ public class PessoaBusinessObjectTest {
 		  PessoasDTOSaida pessoasDTOSaida = pessoaBusinessObject.populateAllPessoasSaida(pessoa) ;
 		  assertNotNull(pessoasDTOSaida);
 	  }
+	  
+	  
+	  
+	  @Test
+	  public void getTesteControllerTest() throws Exception{
+		  
+		  this.mockMvc.perform(MockMvcRequestBuilders.get("/teste").content("Teste"))
+          .andExpect(MockMvcResultMatchers.status().isOk())
+          .andDo(MockMvcResultHandlers.print());
+	  }
+	  
+	  
+		 
+		
 
 }
