@@ -22,11 +22,12 @@ public class ScoreBusinessObject {
     	return scoreRepository.save(score);
     }
 	
-	public void addScorePopulate() {	
+	public boolean addScorePopulate() {	
 		this.doPopulate("Insuficiente", 0, 200);
 		this.doPopulate("Inaceitável", 201, 500);
 		this.doPopulate("Aceitável", 501, 700);
 		this.doPopulate("Recomendável", 701, 1000);
+		return true;
 	}
 	
 	public Score doPopulate(String descricao, int inicial, int finnal) {

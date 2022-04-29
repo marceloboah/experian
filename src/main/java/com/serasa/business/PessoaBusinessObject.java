@@ -57,14 +57,17 @@ public class PessoaBusinessObject {
 			Pessoa pessoa = (Pessoa) iterator.next();
 			Afinidade afinidade = afinidadeBusinessObject.getAfinidadeByRegiao(pessoa.getRegiao());
 			List<String> listaEstados = new ArrayList<String>();
-			for (Iterator<Estados> iterator2 = afinidade.getEstados().iterator(); iterator2.hasNext();) {
-				 Estados estado = (Estados) iterator2.next();
-				 listaEstados.add(estado.getEstado());
+			if(afinidade != null) {
+				for (Iterator<Estados> iterator2 = afinidade.getEstados().iterator(); iterator2.hasNext();) {
+					 Estados estado = (Estados) iterator2.next();
+					 listaEstados.add(estado.getEstado());
+				}
+				pessoa.setEstadosString(listaEstados);
+				PessoasDTOSaida pessoasDTOSaida = new PessoasDTOSaida();
+				pessoasDTOSaida = this.populateAllPessoasSaida(pessoa);
+				listPessoasDTOSaida.add(pessoasDTOSaida);
 			}
-			pessoa.setEstadosString(listaEstados);
-			PessoasDTOSaida pessoasDTOSaida = new PessoasDTOSaida();
-			pessoasDTOSaida = this.populateAllPessoasSaida(pessoa);
-			listPessoasDTOSaida.add(pessoasDTOSaida);
+			
 		}
         return listPessoasDTOSaida;
     }

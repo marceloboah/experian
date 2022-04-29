@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.serasa.business.ScoreBusinessObject;
 import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @SpringBootApplication
 @EnableAutoConfiguration
-@Log4j2
 public class ExperianApplication implements CommandLineRunner {
 
 	@Autowired
