@@ -20,10 +20,12 @@ Após a implementação do JWT torna-se obrigatório o envio do parametro Author
 </br>
 POST 'http://localhost:9099/authenticate'
 </br>
+{</br>
  "username": "marcelo",
  </br>
  "password": "usersecretforjwtauthenticateoratoroeuaroupadoreideromalalalameudeuscomoessabencaodechave"
  </br>
+ }</br>
 </br>
 curl --location --request POST 'http://localhost:9099/authenticate' \
 --header 'Content-Type: application/json' \
