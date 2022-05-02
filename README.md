@@ -106,7 +106,7 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 
 •	POST /pessoa
  </br>
-# Informar a seguinte estrutura de dados na inclusão:
+## Informar a seguinte estrutura de dados na inclusão:
 </br></br>
 {</br>
 	“nome”: “Fulano de Tal”,</br>
@@ -123,7 +123,7 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 
  </br>
 •	POST /afinidade
-# Informar a seguinte estrutura de dados na inclusão:
+## Informar a seguinte estrutura de dados na inclusão:
 {</br>
 	“regiao”: “sudeste”,</br>
 	“estados”: [</br>
@@ -133,19 +133,19 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 		“ES”</br>
 	]</br>
 }</br></br>
-# Retornar 201 no sucesso da inclusão;
+## Retornar 201 no sucesso da inclusão;
 
 •	POST /score </br>
-# Informar a seguinte estrutura de dados na inclusão:
+## Informar a seguinte estrutura de dados na inclusão:
 { </br>
 	“scoreDescricao”: “Insuficiente”, </br>
 	“inicial”: 0, </br>
 	“final”: 200 </br>
 } </br> </br>
-# Retornar 201 no sucesso da inclusão;
+## Retornar 201 no sucesso da inclusão;
 
 •	GET /pessoa/{id} </br>
-# Se id encontrado no banco, retornar a seguinte estrutura de dados:
+## Se id encontrado no banco, retornar a seguinte estrutura de dados:
 { </br>
 	“nome”: “Fulano de Tal”, </br>
 	“telefone”: “99 99999-9999”, </br>
@@ -158,11 +158,11 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 		“ES” </br>
 	] </br>
 } </br> </br>
-# Se id encontrado no banco, retornar 200, com a estrutura de dados;
-# Se id não encontrado no banco, retornar 204 (no content);
+## Se id encontrado no banco, retornar 200, com a estrutura de dados;
+## Se id não encontrado no banco, retornar 204 (no content);
 
 •	GET /pessoa
-# Retornar uma lista de todo o cadastro, sendo cada item da lista com a seguinte estrutura de dados:
+## Retornar uma lista de todo o cadastro, sendo cada item da lista com a seguinte estrutura de dados:
 [ </br>
 	{ </br>
 		“nome”: “Fulano de Tal”, </br>
@@ -188,10 +188,10 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 	] </br>
 	} </br>
 ] </br>
-# Se algum cadastro encontrado no banco, retornar 200, com a estrutura JSON;
-# Se nenhum item encontrado no banco, retornar 204 (no content);
+## Se algum cadastro encontrado no banco, retornar 200, com a estrutura JSON;
+## Se nenhum item encontrado no banco, retornar 204 (no content);
 
-3.	Lógica do serviço
+# 3.Lógica do serviço
  </br> </br>
 •	Montar lógica na camada Service, para associar a regiao da afinidade, com a regiao da pessoa, e retornar a lista de estados correspondentes à regiao. </br>
 •	Montar lógica na camada Service, para retornar o atributo scoreDescricao, correspondente ao score encontrado entre inicial e final; </br>
@@ -203,7 +203,7 @@ Aceitável	501	700 </br>
 Recomendável	701	1000 </br>
 
  </br> </br>
-4.	Estrutura do Banco de dados </br>
+# 4.	Estrutura do Banco de dados 
  </br> </br>
 •	pessoa </br>
 o	id – numérico </br>
