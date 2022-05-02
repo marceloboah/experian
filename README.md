@@ -15,7 +15,8 @@ O item JWT feito posteriormente possuem itens dependentes como User e Login que 
    
 </br>
 Após a implementação do JWT torna-se obrigatório o envio do parametro Authorization para todas as chamadas com a exceção da chamada de login abaixo. Como a base de dados está vazia a primeira autenticação é configurada no arquivo de application.properties. Seguem abaixo a chamda em formato cUrl para importar no Postman. 
- </br> </br>
+</br> </br>
+
 # Login
 </br>
 POST 'http://localhost:9099/authenticate'
