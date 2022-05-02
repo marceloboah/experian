@@ -85,12 +85,12 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 
 
 
-# ---------------------------------------------------------------
+## ---------------------------------------------------------------
 # Desafio Serasa Experian 
-</br>
+</br></br>
 # Objetivo: Criar um serviço do tipo API REST, para cadastro de pessoas com score e suas regiões de afinidades 
 
-</br>
+</br></br>
 # 1.Para a construção desse serviço, algumas premissas e sugestões 
 </br></br>
 •	Usar linguagem Java (preferência Java 11); </br>
@@ -118,8 +118,8 @@ curl --location --request GET 'http://localhost:9099/pessoa' \
 	“regiao”: “sudeste”</br>
 }</br>
 </br>
-# Adicionar um atributo id automático e data de inclusão, além dos dados do POST, durante inclusão dos dados no banco;
-# Retornar 201 no sucesso da inclusão;
+## Adicionar um atributo id automático e data de inclusão, além dos dados do POST, durante inclusão dos dados no banco;
+## Retornar 201 no sucesso da inclusão;
 
  </br>
 •	POST /afinidade
@@ -203,7 +203,7 @@ Aceitável	501	700 </br>
 Recomendável	701	1000 </br>
 
  </br> </br>
-# 4.	Estrutura do Banco de dados 
+# 4.Estrutura do Banco de dados 
  </br> </br>
 •	pessoa </br>
 o	id – numérico </br>
