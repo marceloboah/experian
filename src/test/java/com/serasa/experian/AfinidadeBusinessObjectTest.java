@@ -25,9 +25,6 @@ public class AfinidadeBusinessObjectTest {
 	  @Autowired
 	  private AfinidadeBusinessObject afinidadeBusinessObject;
 	  
-	  @SuppressWarnings("unused")
-	  @Autowired
-	  private MockMvc mockMvc;
 	  
 	  @Test
 	  public void addAfinidadeTest(){

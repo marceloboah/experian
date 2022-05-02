@@ -29,7 +29,7 @@ import com.serasa.dto.AfinidadeDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest 
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 public class PessoaBusinessObjectTest {
 	
 	  @Autowired

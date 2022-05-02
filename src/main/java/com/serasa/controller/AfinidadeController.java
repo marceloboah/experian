@@ -15,7 +15,6 @@ import com.serasa.dto.AfinidadeDTO;
 
 import lombok.extern.log4j.Log4j2;
 
-
 @RestController
 @CrossOrigin({"*"})
 @Log4j2

@@ -16,18 +16,16 @@ import com.serasa.domain.Pessoa;
 @Repository
 public class PessoaRepositoryImpl {
 
-    @PersistenceContext
-    private EntityManager em;
-    
-
-	public List<Pessoa> getAllPessoa() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Pessoa> criteriaQuery = cb.createQuery(Pessoa.class);
-        Root<Pessoa> ptable = criteriaQuery.from(Pessoa.class);
-        criteriaQuery.select(ptable);
-    	criteriaQuery.orderBy(cb.asc(ptable.get("id")));
-    	TypedQuery<Pessoa> query = em.createQuery(criteriaQuery);
-        List<Pessoa> list = query.getResultList();
-        return list;
-	}
+	
+	 @PersistenceContext private EntityManager em;
+	 
+	 
+	 public List<Pessoa> getAllPessoa() { CriteriaBuilder cb =
+	 em.getCriteriaBuilder(); CriteriaQuery<Pessoa> criteriaQuery =
+	 cb.createQuery(Pessoa.class); Root<Pessoa> ptable =
+	 criteriaQuery.from(Pessoa.class); criteriaQuery.select(ptable);
+	 criteriaQuery.orderBy(cb.asc(ptable.get("id"))); TypedQuery<Pessoa> query =
+	 em.createQuery(criteriaQuery); List<Pessoa> list = query.getResultList();
+	 return list; }
+	
 }
