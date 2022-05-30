@@ -5,6 +5,10 @@
 </br>
 Obs: O arquivo está configurado na porta 9099.
 </br></br>
+<font color="red">
+Obs: Alguns endpoints foram atualizados por necessidade de ajustes no frontend, a documentação se encontra desatualizado por adições de id's em endpoints existentes e novos endpoints.
+</font>
+</br></br>
 Os objetos possuem relacionamentos e devem ser inseridos na mesma sequencia sugerda na tarefa. Itens como Pessoa se estiverem sem relacionamento com Afinidade e Score não retornarão.
  </br>
  O sistema insere automáticamente a tabela sugerida na subida do servidor.
