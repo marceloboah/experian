@@ -41,5 +41,11 @@ public class AfinidadeBusinessObject {
 		Afinidade afinidade = afinidadeRepository.getAfinidadeByRegiao(regiao);
 		return afinidade;
 	}
+	
+	public List<Afinidade> getAfinidades() {
+		
+		return (List<Afinidade>) afinidadeRepository.findAll();
+		
+	}
 
 }

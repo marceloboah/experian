@@ -15,5 +15,4 @@ public interface AfinidadeRepository extends CrudRepository<Afinidade, Long> , A
 	@Query("SELECT a FROM Afinidade a WHERE a.regiao= :regiao ")
 	Afinidade getAfinidadeByRegiao(@Param("regiao") String regiao);
 	
-	
 }

@@ -25,6 +25,7 @@ public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private long id;
 		
 	@Column(name = "DATA_INCLUSAO")

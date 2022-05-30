@@ -120,7 +120,9 @@ public class PessoaBusinessObject {
 	public PessoasDTOSaida populateAllPessoasSaida(Pessoa pessoa) {
 		
 		PessoasDTOSaida pessoaDTO = new PessoasDTOSaida();
+		pessoaDTO.setId(pessoa.getId());
 		pessoaDTO.setNome(pessoa.getNome());
+		pessoaDTO.setIdade(pessoa.getIdade());
 		pessoaDTO.setCidade(pessoa.getCidade());
 		pessoaDTO.setEstado(pessoa.getEstado());
 		pessoaDTO.setScoreDescricao(pessoa.getScore());

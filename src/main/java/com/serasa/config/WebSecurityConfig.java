@@ -58,7 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// Não cheque essas requisições
 				.authorizeRequests().antMatchers(
 						"/login", 
-						"/authenticate", 
+						"/authenticate",
+						"/pessoa",
+						"/pessoas",
+						"/afinidade",
+						"/score",
+						"/pessoa/{id}",
 						"/v2/api-docs", 
 						"/configuration/ui",
 						"/swagger-resources/**", 

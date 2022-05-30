@@ -11,7 +11,11 @@ import lombok.Setter;
 @Data
 public class PessoasDTOSaida {
 	
+	private long id;
+	
 	private String nome;
+	
+	private Integer idade;
 	
 	private String cidade;
 	
