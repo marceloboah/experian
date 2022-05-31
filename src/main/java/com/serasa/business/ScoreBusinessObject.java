@@ -1,5 +1,7 @@
 package com.serasa.business;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,10 @@ public class ScoreBusinessObject {
 
 	public Score getScoreByScore(int score) {		
     	return scoreRepository.findScoreBetweenParam(score);
+    }
+	
+	public List<Score> getScore() {		
+    	return (List<Score>) scoreRepository.findAll();
     }
 
 }

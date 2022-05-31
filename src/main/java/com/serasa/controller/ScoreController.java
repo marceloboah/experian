@@ -1,5 +1,7 @@
 package com.serasa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +46,18 @@ public class ScoreController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return new ResponseEntity<Score>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
+	
+	@GetMapping("score")
+    public ResponseEntity<List<Score>> getScore() {
+		
+		try {
+			List<Score> scoreList = scoreBusinessObject.getScore();
+			return new ResponseEntity<List<Score>>(scoreList,HttpStatus.OK);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return new ResponseEntity<List<Score>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
 	
